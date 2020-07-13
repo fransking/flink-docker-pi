@@ -1,2 +1,2 @@
 # flink-docker-pi
-Flick Docker image for Raspberry Pi
+Flink Docker image for Raspberry Pi
