@@ -20,7 +20,7 @@
 
 # FROM balenalib/raspberry-pi-debian-openjdk:8-stretch-build as BUILD
 
-FROM adoptopenjdk/openjdk8:debian-slim as BUILD
+FROM adoptopenjdk/openjdk11:debian-slim as BUILD
 
 RUN set -ex; \
     apt-get update; \
@@ -31,7 +31,7 @@ RUN set -ex; \
     chmod 0755 /sbin/su-exec; \
     rm /sbin/su-exec.c
 
-FROM adoptopenjdk/openjdk8:debian-slim
+FROM adoptopenjdk/openjdk11:debian-slim
 
 RUN set -ex; \
     apt-get update; \
@@ -39,7 +39,7 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 # Configure Flink version
-ENV FLINK_TGZ_URL=https://www.apache.org/dyn/closer.cgi?action=download&filename=flink/flink-1.10.1/flink-1.10.1-bin-scala_2.12.tgz
+ENV FLINK_TGZ_URL=https://www.apache.org/dyn/closer.cgi?action=download&filename=flink/flink-1.11.1/flink-1.11.1-bin-scala_2.12.tgz
 
 # Prepare environment
 ENV FLINK_HOME=/opt/flink
