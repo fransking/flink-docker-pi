@@ -39,7 +39,7 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 # Configure Flink version
-ENV FLINK_TGZ_URL=https://www.apache.org/dyn/closer.cgi?action=download&filename=flink/flink-1.11.1/flink-1.11.1-bin-scala_2.12.tgz
+ENV FLINK_TGZ_URL=https://www.apache.org/dyn/closer.cgi?action=download&filename=flink/flink-1.12.2/flink-1.12.2-bin-scala_2.12.tgz
 
 # Prepare environment
 ENV FLINK_HOME=/opt/flink
