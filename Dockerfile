@@ -35,7 +35,7 @@ FROM adoptopenjdk/openjdk11:debian-slim
 
 RUN set -ex; \
     apt-get update; \
-    apt-get -y install libsnappy1v5 gettext-base wget; \
+    apt-get -y install libsnappy1v5 gettext-base wget zip; \
     rm -rf /var/lib/apt/lists/*
 
 # Configure Flink version
@@ -54,6 +54,10 @@ RUN set -ex; \
   tar -xf flink.tgz --strip-components=1; \
   rm flink.tgz; \
   chown -R flink:flink .;
+
+
+# Mitigate log4j vulnerability by removing JndiLookup
+RUN zip -q -d lib/log4j-core*.jar org/apache/logging/log4j/core/lookup/JndiLookup.class
 
 
 # Copy across su-exec
