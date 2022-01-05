@@ -18,8 +18,6 @@
 
 # Based on https://github.com/apache/flink-docker/blob/master/1.11/scala_2.12-debian/Dockerfile and modified for Raspberry Pi
 
-# FROM balenalib/raspberry-pi-debian-openjdk:8-stretch-build as BUILD
-
 FROM adoptopenjdk/openjdk11:debian-slim as BUILD
 
 RUN set -ex; \
@@ -39,7 +37,7 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*
 
 # Configure Flink version
-ENV FLINK_TGZ_URL=https://www.apache.org/dyn/closer.cgi?action=download&filename=flink/flink-1.12.2/flink-1.12.2-bin-scala_2.12.tgz
+ENV FLINK_TGZ_URL=https://www.apache.org/dyn/closer.cgi?action=download&filename=flink/flink-1.12.7/flink-1.12.7-bin-scala_2.12.tgz
 
 # Prepare environment
 ENV FLINK_HOME=/opt/flink
@@ -54,10 +52,6 @@ RUN set -ex; \
   tar -xf flink.tgz --strip-components=1; \
   rm flink.tgz; \
   chown -R flink:flink .;
-
-
-# Mitigate log4j vulnerability by removing JndiLookup
-RUN zip -q -d lib/log4j-core*.jar org/apache/logging/log4j/core/lookup/JndiLookup.class
 
 
 # Copy across su-exec
